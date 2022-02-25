@@ -1,30 +1,37 @@
-import {ImageEl, DivEl, Header, Para} from './styledComponents'
-
-import AppTheme from '../../context/Theme'
+import {NotFoundContainer, Heading, Desc, Image} from './styledComponents'
+// import Header from '../Header'
+import CartContext from '../../context/CartContext'
 
 const NotFound = () => (
-  <AppTheme.Consumer>
+  <CartContext.Consumer>
     {value => {
-      const {activeTheme} = value
-      const bgColor = activeTheme === 'light' ? '#ffffff' : '#000000'
-      const color = activeTheme === 'light' ? '#000000' : '#ffffff'
+      const {isDarkTheme} = value
+
+      const imageUrl = isDarkTheme
+        ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-dark-theme-img.png'
+        : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png'
+
+      const isDarkHeading = isDarkTheme ? 'white' : 'black'
+
+      const isDarkDesc = isDarkTheme ? 'white' : 'black'
+
+      const isDarkContainer = isDarkTheme ? 'black' : 'white'
+
       return (
-        <DivEl bgColor={bgColor} color={color}>
-          {activeTheme === 'light' ? (
-            <>
-              <ImageEl src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png" />
-            </>
-          ) : (
-            <>
-              <ImageEl src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-dark-theme-img.png" />
-            </>
-          )}
-          <Header>Page Not Found</Header>
-          <Para>We are sorry,the page you requested could not be found.</Para>
-        </DivEl>
+        <>
+          <NotFoundContainer isDark={isDarkContainer}>
+            <Image src={imageUrl} alt="not found" />
+            <Heading isDark={isDarkHeading} isDarkTheme>
+              Page Not Found
+            </Heading>
+            <Desc isDark={isDarkDesc}>
+              we are sorry, the page you requested could not be found.
+            </Desc>
+          </NotFoundContainer>
+        </>
       )
     }}
-  </AppTheme.Consumer>
+  </CartContext.Consumer>
 )
 
 export default NotFound

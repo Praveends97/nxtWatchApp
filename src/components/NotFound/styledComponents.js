@@ -1,26 +1,27 @@
 import styled from 'styled-components'
 
-export const ImageEl = styled.img`
-  width: 90%;
-  @media (min-width: 768px) {
-    width: 40%;
-  }
-`
-export const DivEl = styled.div`
-  height: 100%;
-  background-color: ${props => props.bgColor};
-  color: ${props => props.color};
+export const NotFoundContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100vh;
   align-items: center;
-  @media (max-width: 767px) {
-    padding: 20px 20px;
-    padding-bottom: 0;
-    height: 100vh;
-    overflow: hidden;
-  }
+  background-color: ${props => props.isDark};
 `
-export const Header = styled.h1``
 
-export const Para = styled.p``
+export const Image = styled.img`
+  width: 250px;
+  margin: 10px;
+`
+
+export const Heading = styled.h1`
+  color: ${props => props.isDark};
+  text-align: center;
+  font-size: 30px;
+`
+
+export const Desc = styled.p`
+  color: ${props => props.isDark};
+  text-align: center;
+  font-size: 20px;
+`
